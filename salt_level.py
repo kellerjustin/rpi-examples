@@ -59,7 +59,7 @@ def calculate_distance_mean():
         i += 1
         cumulative_distance += distance
 
-    dist_average = sound((cumulative_distance / readings), 2)
+    dist_average = round((cumulative_distance / readings), 2)
 
     print("Average distance: {}".format(dist_average))
     return dist_average
