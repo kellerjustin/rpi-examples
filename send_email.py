@@ -1,4 +1,4 @@
-from creds import PASSWORD, FROM, TO[0]
+from creds import PASSWORD, FROM, TO
 import smtplib
 import ssl
 
