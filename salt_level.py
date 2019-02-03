@@ -3,6 +3,7 @@ import time
 import signal
 import sys
 import send_email
+from creds import TO
 
 def close(signal, frame):
     print("\nTurning off ultrasonic distance detection...\n")
@@ -57,7 +58,11 @@ def calculate_distance_mean():
         time.sleep(1)
         i += 1
         cumulative_distance += distance
-    return (cumulative_distance / readings)
+
+    dist_average = sound((cumulative_distance / readings), 2)
+
+    print("Average distance: {}".format(dist_average))
+    return dist_average
 
 
 def level_notifier(distance):
@@ -68,16 +73,18 @@ def level_notifier(distance):
 
 
 salt_level = calculate_distance_mean()
-msg = """\
-Subject: Salt Level
 
-This message is sent from your water softener.
-Yeah, that's right, your fucking water softener is now
-self-aware.
+if salt_level > 13.5:
+    msg = """\
+    Subject: Salt Level Getting Low
 
-The salt is {0} cm from the sensor
+    This message is sent from your water softener.
+    Yeah, that's right, your water softener is now
+    self-aware.
 
-""".format(salt_level)
+    The salt is {0} cm from the sensor. Might wanna add a
+    bag or two.
 
-
-send_email.send_mail(msg)
+    """.format(salt_level)
+    for recipient in TO:
+        send_email.send_mail(msg=msg, to=recipient)

@@ -1,13 +1,13 @@
-from creds import PASSWORD, FROM, TO
+from creds import PASSWORD, FROM, TO[0]
 import smtplib
 import ssl
 
 
-def send_mail(msg=None):
+def send_mail(msg=None, to=TO[0]):
     port = 587  # For starttls
     smtp_server = "smtp.gmail.com"
     sender_email = FROM
-    receiver_email = TO
+    receiver_email = to
     password = PASSWORD
     if msg is not None:
         message = msg
