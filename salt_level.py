@@ -27,6 +27,7 @@ def calculate_distance_mean():
     readings = 20
     i = 0
     distance = 0.0
+    cumulative_distance = 0.0
 
     while i < readings:
         # set Trigger to HIGH
