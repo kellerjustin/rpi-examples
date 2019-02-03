@@ -57,7 +57,7 @@ def calculate_distance_mean():
         time.sleep(1)
         i += 1
         cumulative_distance += distance
-        return (cumulative_distance / readings)
+    return (cumulative_distance / readings)
 
 
 def level_notifier(distance):
