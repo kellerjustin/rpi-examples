@@ -76,15 +76,14 @@ salt_level = calculate_distance_mean()
 
 if salt_level > 13.5:
     msg = """\
-    Subject: Salt Level Getting Low
+    Subject: Salt Level
 
     This message is sent from your water softener.
     Yeah, that's right, your water softener is now
     self-aware.
 
-    The salt is {0} cm from the sensor. Might wanna add a
-    bag or two.
-
+    The salt is {0} cm from the sensor. Might wanna
+    add a bag or two.
     """.format(salt_level)
     for recipient in TO:
         send_email.send_mail(msg=msg, to=recipient)
