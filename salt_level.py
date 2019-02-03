@@ -5,9 +5,9 @@ import sys
 import send_email
 
 def close(signal, frame):
-	print("\nTurning off ultrasonic distance detection...\n")
-	GPIO.cleanup()
-	sys.exit(0)
+    print("\nTurning off ultrasonic distance detection...\n")
+    GPIO.cleanup()
+    sys.exit(0)
 
 
 def calculate_distance_mean():
@@ -29,31 +29,31 @@ def calculate_distance_mean():
     distance = 0.0
 
     while i < readings:
-    	# set Trigger to HIGH
-    	GPIO.output(pinTrigger, True)
-    	# set Trigger after 0.01ms to LOW
-    	time.sleep(0.00001)
-    	GPIO.output(pinTrigger, False)
+        # set Trigger to HIGH
+        GPIO.output(pinTrigger, True)
+        # set Trigger after 0.01ms to LOW
+        time.sleep(0.00001)
+        GPIO.output(pinTrigger, False)
 
-    	startTime = time.time()
-    	stopTime = time.time()
+        startTime = time.time()
+        stopTime = time.time()
 
-    	# save start time
-    	while 0 == GPIO.input(pinEcho):
-    		startTime = time.time()
+        # save start time
+        while 0 == GPIO.input(pinEcho):
+            startTime = time.time()
 
-    	# save time of arrival
-    	while 1 == GPIO.input(pinEcho):
-    		stopTime = time.time()
+        # save time of arrival
+        while 1 == GPIO.input(pinEcho):
+            stopTime = time.time()
 
-    	# time difference between start and arrival
-    	TimeElapsed = stopTime - startTime
-    	# multiply with the sonic speed (34300 cm/s)
-    	# and divide by 2, because there and back
-    	distance = (TimeElapsed * 34300) / 2
+        # time difference between start and arrival
+        TimeElapsed = stopTime - startTime
+        # multiply with the sonic speed (34300 cm/s)
+        # and divide by 2, because there and back
+        distance = (TimeElapsed * 34300) / 2
 
-    	print ("Distance: %.1f cm" % distance)
-    	time.sleep(1)
+        print("Distance: %.1f cm" % distance)
+        time.sleep(1)
         i += 1
         cumulative_distance += distance
         return (cumulative_distance / readings)
