@@ -30,6 +30,8 @@ def calculate_distance_mean():
     distance = 0.0
     cumulative_distance = 0.0
 
+    print(time.localtime())
+
     while i < readings:
         # set Trigger to HIGH
         GPIO.output(pinTrigger, True)
@@ -75,6 +77,7 @@ def level_notifier(distance):
 salt_level = calculate_distance_mean()
 
 if salt_level > 13.5:
+    print("low salt -- sending email")
     subject = "Salt Level"
     text = """
     This message is sent from your water softener.
