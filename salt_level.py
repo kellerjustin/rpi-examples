@@ -76,7 +76,7 @@ def level_notifier(distance):
 
 salt_level = calculate_distance_mean()
 
-if salt_level > 13.5:
+if salt_level > 25:
     print("low salt -- sending email")
     subject = "Salt Level"
     text = """
